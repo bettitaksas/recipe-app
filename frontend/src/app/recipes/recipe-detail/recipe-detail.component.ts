@@ -2,14 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Recipe} from "../recipe.model";
 import {RecipeService} from "../recipe.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {relative} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.css'
 })
-export class RecipeDetailComponent implements OnInit{
+export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   id: number;
 
@@ -34,5 +33,10 @@ export class RecipeDetailComponent implements OnInit{
 
   onEditRecipe() {
     this.router.navigate(['edit'], {relativeTo: this.route})
+  }
+
+  onDelete() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
   }
 }
